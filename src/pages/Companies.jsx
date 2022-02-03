@@ -54,7 +54,7 @@ const Companies = () => {
     }, 800);
 
     return (
-        <Box>
+        <Box pad={{ horizontal: 'medium' }}>
             <Box align='center' pad={'large'}>
                 <Heading margin="none">Rocket Companies</Heading>
             </Box>
@@ -66,56 +66,58 @@ const Companies = () => {
                         placeholder="Search for a company..."
                         onChange={(event) => { handleSearchInputChange(event.target.value); }}
                     />
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableCell scope="col" border="bottom">
-                                    <Text weight={'bold'}>Name</Text>
-                                </TableCell>
-                                <TableCell scope="col" border="bottom">
-                                    <Text weight={'bold'}>Country</Text>
-                                </TableCell>
-                                <TableCell scope="col" border="bottom">
-                                    <Text weight={'bold'}>Active</Text>
-                                </TableCell>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {companies.map(company => (
-                                <TableRow key={company.id}>
-                                    <TableCell scope="row">
-                                        <Anchor
-                                            as={Link}
-                                            to={`/company/${company.id}`}
-                                            label={company.name}
-                                            color={'light-1'}
-                                            weight={'normal'}
-                                        />
+                    <Box>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableCell scope="col" border="bottom">
+                                        <Text weight={'bold'}>Name</Text>
                                     </TableCell>
-                                    {company.country.code ? (
-                                        <TableCell>
+                                    <TableCell scope="col" border="bottom">
+                                        <Text weight={'bold'}>Country</Text>
+                                    </TableCell>
+                                    <TableCell scope="col" border="bottom">
+                                        <Text weight={'bold'}>Active</Text>
+                                    </TableCell>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {companies.map(company => (
+                                    <TableRow key={company.id}>
+                                        <TableCell scope="row">
                                             <Anchor
                                                 as={Link}
-                                                to={`/country/${company.country.code}`}
-                                                label={`${company.country.name} (${company.country.code})`}
+                                                to={`/company/${company.id}`}
+                                                label={company.name}
                                                 color={'light-1'}
                                                 weight={'normal'}
                                             />
                                         </TableCell>
-                                    ) : (
-                                        <TableCell>{company.country.name}</TableCell>
-                                    )}
-                                    <TableCell>
-                                        {company.inactive ? (
-                                            <Text color={'status-error'}>No</Text>
+                                        {company.country.code ? (
+                                            <TableCell>
+                                                <Anchor
+                                                    as={Link}
+                                                    to={`/country/${company.country.code}`}
+                                                    label={`${company.country.name} (${company.country.code})`}
+                                                    color={'light-1'}
+                                                    weight={'normal'}
+                                                />
+                                            </TableCell>
                                         ) : (
-                                            <Text color={'status-ok'}>Yes</Text>
+                                            <TableCell>{company.country.name}</TableCell>
                                         )}
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                                        <TableCell>
+                                            {company.inactive ? (
+                                                <Text color={'status-error'}>No</Text>
+                                            ) : (
+                                                <Text color={'status-ok'}>Yes</Text>
+                                            )}
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Box>
                 </Box>
             </Box>
             <Box align='center' pad={'large'}>

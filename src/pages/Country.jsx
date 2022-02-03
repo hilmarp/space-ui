@@ -44,7 +44,7 @@ const Country = () => {
     };
 
     return (
-        <Box>
+        <Box pad={{ horizontal: 'medium' }}>
             <Box align='center' pad={'large'}>
                 {country ? (
                     <Heading margin="none">Upcoming {country} Launches</Heading>

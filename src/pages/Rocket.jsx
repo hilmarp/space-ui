@@ -47,7 +47,7 @@ const Rocket = () => {
     };
 
     return (
-        <Box>
+        <Box pad={{ horizontal: 'medium' }}>
             <Box align='center' pad={'large'}>
                 {rocket ? (
                     <Heading margin="none">Upcoming {rocket.name} Launches</Heading>

@@ -38,7 +38,7 @@ const Home = () => {
     }, []);
 
     return (
-        <Box pad={{ bottom: 'large' }}>
+        <Box pad={{ bottom: 'large', left: 'medium', right: 'medium' }}>
             {launches && launches.length > 0 && (
                 <Box>
                     <Box align='center' pad={'large'}>

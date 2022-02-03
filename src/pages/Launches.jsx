@@ -38,7 +38,7 @@ const Launches = () => {
     };
 
     return (
-        <Box>
+        <Box pad={{ horizontal: 'medium' }}>
             <Box align='center' pad={'large'}>
                 <Heading margin="none">Upcoming Launches</Heading>
                 {/* <Box pad={{ top: 'small' }}>

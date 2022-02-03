@@ -47,7 +47,7 @@ const Pad = () => {
     };
 
     return (
-        <Box>
+        <Box pad={{ horizontal: 'medium' }}>
             <Box align='center' pad={'large'}>
                 {pad ? (
                     <Heading margin="none">Upcoming {pad.name} Launches</Heading>

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Heading, Text, Anchor, Tip, Paragraph } from 'grommet';
+import { Box, Heading, Text, Anchor, Tip, Paragraph, ResponsiveContext } from 'grommet';
 import { Location, Cloud, Deploy, Calendar } from 'grommet-icons';
 import { Link } from 'react-router-dom';
 import { differenceInDays } from 'date-fns';
@@ -15,6 +15,8 @@ const FeaturedLaunch = ({ launch, linkToLaunch }) => {
     const [relativeTime, setRelativeTime] = useState('');
     const [showRelativeTime, setShowRelativeTime] = useState(false);
 
+    const screenSize = useContext(ResponsiveContext);
+
     useEffect(() => {
         const launchDate = launchDateObj(launch);
         setTime(launchDate.time);
@@ -23,17 +25,31 @@ const FeaturedLaunch = ({ launch, linkToLaunch }) => {
     }, [launch]);
 
     return (
-        <Box background={'dark-2'} direction='row'>
+        <Box background={'dark-2'} direction={screenSize === 'small' ? 'column' : 'row'}>
             {linkToLaunch ? (
-                <Anchor as={Link} to={`/launch/${launch.id}`}>
-                    <Box flex={false} height={'large'} width={'large'}>
+                screenSize === 'small' ? (
+                    <Anchor as={Link} to={`/launch/${launch.id}`}>
+                        <Box flex={false} height={'medium'}>
+                            <Rocket slug={launch.vehicle.slug} />
+                        </Box>
+                    </Anchor>
+                ) : (
+                    <Anchor as={Link} to={`/launch/${launch.id}`}>
+                        <Box flex={false} height={'large'} width={screenSize === 'medium' ? 'medium' : 'large'}>
+                            <Rocket slug={launch.vehicle.slug} />
+                        </Box>
+                    </Anchor>
+                )
+            ) : (
+                screenSize === 'small' ? (
+                    <Box flex={false} height={'medium'}>
                         <Rocket slug={launch.vehicle.slug} />
                     </Box>
-                </Anchor>
-            ) : (
-                <Box flex={false} height={'large'} width={'large'}>
-                    <Rocket slug={launch.vehicle.slug} />
-                </Box>
+                ) : (
+                    <Box flex={false} height={'large'} width={screenSize === 'medium' ? 'medium' : 'large'}>
+                        <Rocket slug={launch.vehicle.slug} />
+                    </Box>
+                )
             )}
             <Box pad={'large'} gap='small'>
                 {linkToLaunch ? (

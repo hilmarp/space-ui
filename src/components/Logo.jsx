@@ -23,6 +23,9 @@ import roscosmos_logo from '../images/logos/roscosmos_logo.png';
 import spacex from '../images/logos/spacex.png';
 import virgin_galactic from '../images/logos/virgin_galactic.png';
 import virgin_orbit from '../images/logos/virgin_orbit.png';
+import northrop_grumman from '../images/logos/northrop_grumman.jpg';
+import ula from '../images/logos/ula.png';
+import relativity_space from '../images/logos/relativity_space.png';
 
 const Logo = ({ slug, link, tooltip }) => {
     const getImage = () => {
@@ -67,6 +70,12 @@ const Logo = ({ slug, link, tooltip }) => {
                 return <Image height={'50'} src={virgin_galactic} />;
             case AVAILABLE_LOGOS.VIRGIN_ORBIT:
                 return <Image height={'50'} src={virgin_orbit} />;
+            case AVAILABLE_LOGOS.NORTHROP_GRUMMAN:
+                return <Image height={'40'} src={northrop_grumman} />;
+            case AVAILABLE_LOGOS.ULA:
+                return <Image height={'30'} src={ula} />;
+            case AVAILABLE_LOGOS.RELATIVITY_SPACE:
+                return <Image height={'25'} src={relativity_space} />;
             default:
                 return <></>;
         }

@@ -45,7 +45,7 @@ const State = () => {
     };
 
     return (
-        <Box>
+        <Box pad={{ horizontal: 'medium' }}>
             <Box align='center' pad={'large'}>
                 {state ? (
                     <Heading margin="none">Upcoming {state} Launches</Heading>

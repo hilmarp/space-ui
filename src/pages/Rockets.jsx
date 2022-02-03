@@ -54,7 +54,7 @@ const Rockets = () => {
     }, 800);
 
     return (
-        <Box>
+        <Box pad={{ horizontal: 'medium' }}>
             <Box align='center' pad={'large'}>
                 <Heading margin="none">Rockets</Heading>
             </Box>
@@ -66,42 +66,44 @@ const Rockets = () => {
                         placeholder="Search for a rocket..."
                         onChange={(event) => { handleSearchInputChange(event.target.value); }}
                     />
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableCell scope="col" border="bottom">
-                                    <Text weight={'bold'}>Name</Text>
-                                </TableCell>
-                                <TableCell scope="col" border="bottom">
-                                    <Text weight={'bold'}>Company</Text>
-                                </TableCell>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {rockets.map(rocket => (
-                                <TableRow key={rocket.id}>
-                                    <TableCell scope="row">
-                                        <Anchor
-                                            as={Link}
-                                            to={`/rocket/${rocket.id}`}
-                                            label={rocket.name}
-                                            color={'light-1'}
-                                            weight={'normal'}
-                                        />
+                    <Box>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableCell scope="col" border="bottom">
+                                        <Text weight={'bold'}>Name</Text>
                                     </TableCell>
-                                    <TableCell>
-                                        <Anchor
-                                            as={Link}
-                                            to={`/company/${rocket.company.id}`}
-                                            label={rocket.company.name}
-                                            color={'light-1'}
-                                            weight={'normal'}
-                                        />
+                                    <TableCell scope="col" border="bottom">
+                                        <Text weight={'bold'}>Company</Text>
                                     </TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                            </TableHeader>
+                            <TableBody>
+                                {rockets.map(rocket => (
+                                    <TableRow key={rocket.id}>
+                                        <TableCell scope="row">
+                                            <Anchor
+                                                as={Link}
+                                                to={`/rocket/${rocket.id}`}
+                                                label={rocket.name}
+                                                color={'light-1'}
+                                                weight={'normal'}
+                                            />
+                                        </TableCell>
+                                        <TableCell>
+                                            <Anchor
+                                                as={Link}
+                                                to={`/company/${rocket.company.id}`}
+                                                label={rocket.company.name}
+                                                color={'light-1'}
+                                                weight={'normal'}
+                                            />
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Box>
                 </Box>
             </Box>
             <Box align='center' pad={'large'}>

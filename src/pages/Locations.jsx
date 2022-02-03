@@ -54,7 +54,7 @@ const Locations = () => {
     }, 800);
 
     return (
-        <Box>
+        <Box pad={{ horizontal: 'medium' }}>
             <Box align='center' pad={'large'}>
                 <Heading margin="none">Locations</Heading>
             </Box>
@@ -66,54 +66,56 @@ const Locations = () => {
                         placeholder="Search for a location..."
                         onChange={(event) => { handleSearchInputChange(event.target.value); }}
                     />
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableCell scope="col" border="bottom">
-                                    <Text weight={'bold'}>Name</Text>
-                                </TableCell>
-                                <TableCell scope="col" border="bottom">
-                                    <Text weight={'bold'}>Country</Text>
-                                </TableCell>
-                                <TableCell scope="col" border="bottom">
-                                    <Text weight={'bold'}>Launch Pads</Text>
-                                </TableCell>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {locations.map(location => (
-                                <TableRow key={location.id}>
-                                    <TableCell scope="row">
-                                        <Anchor
-                                            as={Link}
-                                            to={`/location/${location.id}`}
-                                            label={location.name}
-                                            color={'light-1'}
-                                            weight={'normal'}
-                                        />
+                    <Box>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableCell scope="col" border="bottom">
+                                        <Text weight={'bold'}>Name</Text>
                                     </TableCell>
-                                    {!location.country && (
-                                        <TableCell>N/A</TableCell>
-                                    )}
-                                    {location.country && location.country.code && (
-                                        <TableCell>
+                                    <TableCell scope="col" border="bottom">
+                                        <Text weight={'bold'}>Country</Text>
+                                    </TableCell>
+                                    <TableCell scope="col" border="bottom">
+                                        <Text weight={'bold'}>Launch Pads</Text>
+                                    </TableCell>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {locations.map(location => (
+                                    <TableRow key={location.id}>
+                                        <TableCell scope="row">
                                             <Anchor
                                                 as={Link}
-                                                to={`/country/${location.country.code}`}
-                                                label={`${location.country.name} (${location.country.code})`}
+                                                to={`/location/${location.id}`}
+                                                label={location.name}
                                                 color={'light-1'}
                                                 weight={'normal'}
                                             />
                                         </TableCell>
-                                    )}
-                                    {location.country && !location.country.code && (
-                                        <TableCell>{location.country.name}</TableCell>
-                                    )}
-                                    <TableCell>{location.pads ? location.pads.length : 0}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                                        {!location.country && (
+                                            <TableCell>N/A</TableCell>
+                                        )}
+                                        {location.country && location.country.code && (
+                                            <TableCell>
+                                                <Anchor
+                                                    as={Link}
+                                                    to={`/country/${location.country.code}`}
+                                                    label={`${location.country.name} (${location.country.code})`}
+                                                    color={'light-1'}
+                                                    weight={'normal'}
+                                                />
+                                            </TableCell>
+                                        )}
+                                        {location.country && !location.country.code && (
+                                            <TableCell>{location.country.name}</TableCell>
+                                        )}
+                                        <TableCell>{location.pads ? location.pads.length : 0}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Box>
                 </Box>
             </Box>
             <Box align='center' pad={'large'}>

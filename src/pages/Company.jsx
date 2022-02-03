@@ -47,7 +47,7 @@ const Company = () => {
     };
 
     return (
-        <Box>
+        <Box pad={{ horizontal: 'medium' }}>
             <Box align='center' pad={'large'}>
                 {company ? (
                     <Heading margin="none">Upcoming {company.name} Launches</Heading>

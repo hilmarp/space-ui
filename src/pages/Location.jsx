@@ -47,7 +47,7 @@ const Location = () => {
     };
 
     return (
-        <Box>
+        <Box pad={{ horizontal: 'medium' }}>
             <Box align='center' pad={'large'}>
                 {location ? (
                     <Heading margin="none">Upcoming {location.name} Launches</Heading>

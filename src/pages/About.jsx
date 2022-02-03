@@ -16,7 +16,7 @@ const About = () => {
     }, []);
 
     return (
-        <Box>
+        <Box pad={{ horizontal: 'medium' }}>
             <Box align='center' pad={'large'}>
                 <Heading margin="none">About</Heading>
             </Box>

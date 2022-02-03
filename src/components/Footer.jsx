@@ -4,7 +4,7 @@ import { Deploy } from 'grommet-icons';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
-    const size = useContext(ResponsiveContext);
+    const screenSize = useContext(ResponsiveContext);
 
     return (
         <Box
@@ -16,21 +16,22 @@ const Footer = () => {
             background={'dark-1'}
         >
             <Box>
-                <Box
-                    direction="row"
-                    align="center"
-                    gap="small"
-                >
-                    <Deploy color="brand" />
-                    {size !== 'small' && (
-                        <Anchor
-                            as={Link}
-                            to="/"
-                            label="Rocket Launches"
-                            color={'light-1'}
-                        />
-                    )}
-                </Box>
+                {screenSize === 'small' ? (
+                    <Anchor
+                        as={Link}
+                        to="/"
+                        color={'light-1'}
+                        icon={<Deploy color={'brand'} />}
+                    />
+                ) : (
+                    <Anchor
+                        as={Link}
+                        to="/"
+                        label="Rocket Launches"
+                        color={'light-1'}
+                        icon={<Deploy color={'brand'} />}
+                    />
+                )}
             </Box>
             <Box>
                 <Anchor

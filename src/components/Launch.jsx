@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Heading, Text, Tip, Anchor } from 'grommet';
+import { Box, Heading, Text, Tip, Anchor, ResponsiveContext } from 'grommet';
 import { Location, Cloud, Deploy, Calendar } from 'grommet-icons';
 import { Link } from 'react-router-dom';
 import { fToC, mphToMs, launchDateObj } from '../utils';
@@ -13,6 +13,8 @@ const Launch = ({ launch }) => {
     const [relativeTime, setRelativeTime] = useState('');
     const [showRelativeTime, setShowRelativeTime] = useState(false);
 
+    const screenSize = useContext(ResponsiveContext);
+
     useEffect(() => {
         const launchDate = launchDateObj(launch);
         setTime(launchDate.time);
@@ -21,11 +23,17 @@ const Launch = ({ launch }) => {
     }, [launch]);
 
     return (
-        <Box background={'dark-2'} direction='row'>
+        <Box background={'dark-2'} direction={screenSize === 'small' ? 'column' : 'row'}>
             <Anchor as={Link} to={`/launch/${launch.id}`}>
-                <Box flex={false} height={'medium'} width={'medium'}>
-                    <Rocket slug={launch.vehicle.slug} />
-                </Box>
+                {screenSize === 'small' ? (
+                    <Box flex={false} height={'small'}>
+                        <Rocket slug={launch.vehicle.slug} />
+                    </Box>
+                ) : (
+                    <Box flex={false} height={'medium'} width={'medium'}>
+                        <Rocket slug={launch.vehicle.slug} />
+                    </Box>
+                )}
             </Anchor>
             <Box pad={'medium'} gap='small'>
                 <Heading margin={'none'}>

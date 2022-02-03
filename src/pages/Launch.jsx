@@ -41,7 +41,7 @@ const Launch = () => {
     }, [launch]);
 
     return (
-        <Box pad={{ top: 'large', bottom: 'large' }}>
+        <Box pad={{ top: 'large', bottom: 'large', left: 'medium', right: 'medium' }}>
             {launch && (
                 <Box align='center' gap='medium'>
                     <Box width={'xxlarge'}>

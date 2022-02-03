@@ -4,13 +4,6 @@ export const PER_HOME_PAGE = 6;
 
 export const MAX_RELATIVE_DATE_DAYS = 6;
 
-export const AVAILABLE_ROCKETS = {
-    FALCON_9: 'falcon-9',
-    SOYUZ: 'soyuz-2'
-};
-
-export const TOTAL_MISC_ROCKETS = 7;
-
 export const AVAILABLE_LOGOS = {
     ABL_SPACE: 'abl-space',
     AEVUM: 'aevum',
@@ -31,7 +24,10 @@ export const AVAILABLE_LOGOS = {
     ROSCOSMOS: 'roscosmos',
     SPACEX: 'spacex',
     VIRGIN_GALACTIC: 'virgin-galactic',
-    VIRGIN_ORBIT: 'virgin-orbit'
+    VIRGIN_ORBIT: 'virgin-orbit',
+    NORTHROP_GRUMMAN: 'northrop-grumman',
+    ULA: 'united-launch-alliance-ula',
+    RELATIVITY_SPACE: 'relativity-space'
 };
 
 export const COUNTRY_CODES = {
