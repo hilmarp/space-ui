@@ -23,7 +23,7 @@ const About = () => {
             <Box align='center' pad={{ bottom: 'large' }}>
                 <Box width={'large'} gap='medium'>
                     <Box>
-                        <Paragraph fill margin={'none'}>See upcoming, or past, rocket launches using a straight to the point, clutter-free, easy on the eyes UI.</Paragraph>
+                        <Paragraph fill margin={'none'}>See upcoming rocket launches using a straight to the point, clutter-free, easy on the eyes UI.</Paragraph>
                     </Box>
                     {/* <Box width={'medium'}>
                         <Text margin={{ bottom: 'small' }}>Todo:</Text>
