@@ -2,7 +2,7 @@ export const PER_PAGE = 25;
 
 export const PER_HOME_PAGE = 6;
 
-export const MAX_RELATIVE_DATE_DAYS = 6;
+export const MAX_RELATIVE_DATE_DAYS = 4;
 
 export const AVAILABLE_LOGOS = {
     ABL_SPACE: 'abl-space',

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Box } from 'grommet';
 
 const LaunchMedia = ({ launch }) => {
     if (!launch.media || !launch.media.length) {
@@ -8,7 +9,7 @@ const LaunchMedia = ({ launch }) => {
     const launchDayFeatured = launch.media.filter(m => m.ldfeatured);
     if (launchDayFeatured.length) {
         return (
-            <>
+            <Box gap='medium'>
                 {launchDayFeatured.map(m => (
                     <iframe
                         key={m.id}
@@ -21,7 +22,7 @@ const LaunchMedia = ({ launch }) => {
                         allowFullScreen
                     />
                 ))}
-            </>
+            </Box>
         );
     }
     return (

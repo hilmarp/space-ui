@@ -8,15 +8,17 @@ import Launch from '../components/Launch';
 import LaunchMedia from '../components/LaunchMedia';
 import FeaturedLaunch from '../components/FeaturedLaunch';
 import { getTitle } from '../utils';
+// import { DEV_LAUNCHES } from '../fixtures';
 
 const Home = () => {
     const [launches, setLaunches] = useState([]);
-    const [launchToday, setLaunchToday] = useState(null);
+    const [featuredLaunches, setFeaturedLaunches] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const asyncGetLaunches = async () => {
             const data = await getLaunches();
+            // const data = DEV_LAUNCHES;
             let result = [];
             if (data.result.length >= PER_HOME_PAGE) {
                 for (let i = 0; i < PER_HOME_PAGE; i++) {
@@ -25,11 +27,10 @@ const Home = () => {
             } else {
                 result = data.result;
             }
-            if (result.length && result[0].win_open && isToday(new Date(result[0].win_open))) {
-                setLaunchToday(result[0]);
-                result.shift();
-            }
-            setLaunches(result);
+            const featured = result.filter(r => r.win_open && isToday(new Date(r.win_open)));
+            const notFeatured = result.filter(r => !featured.find(f => f.id === r.id));
+            setFeaturedLaunches(featured);
+            setLaunches(notFeatured);
             setLoading(false);
         };
         document.title = getTitle();
@@ -42,24 +43,26 @@ const Home = () => {
             {launches && launches.length > 0 && (
                 <Box>
                     <Box align='center' pad={'large'}>
-                        {launchToday ? (
+                        {featuredLaunches.length > 0 ? (
                             <Heading margin="none">It&apos;s Launch Day!</Heading>
                         ) : (
                             <Heading margin="none">Upcoming Launches</Heading>
                         )}
                     </Box>
                     <Box align='center'>
-                        {launchToday && (
-                            <Box align='center'>
-                                <Box width={'xxlarge'} pad={{ bottom: 'medium' }}>
-                                    <FeaturedLaunch launch={launchToday} linkToLaunch />
-                                </Box>
-                                {launchToday.media && launchToday.media.length > 0 && (
-                                    <Box width={'xlarge'} gap='medium' pad={{ bottom: 'xlarge' }}>
-                                        <LaunchMedia launch={launchToday} />
+                        {featuredLaunches.length > 0 && (
+                            featuredLaunches.map(featuredLaunch => (
+                                <Box key={featuredLaunch.id} align='center'>
+                                    <Box width={'xxlarge'} pad={{ bottom: 'medium' }}>
+                                        <FeaturedLaunch launch={featuredLaunch} linkToLaunch />
                                     </Box>
-                                )}
-                            </Box>
+                                    {featuredLaunch.media && featuredLaunch.media.length > 0 && (
+                                        <Box width={'xlarge'} gap='medium' pad={{ bottom: 'medium' }}>
+                                            <LaunchMedia launch={featuredLaunch} />
+                                        </Box>
+                                    )}
+                                </Box>
+                            ))
                         )}
                         <Box width={'xlarge'}>
                             <Box gap='medium'>
