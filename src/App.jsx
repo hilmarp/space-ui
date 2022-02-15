@@ -9,6 +9,7 @@ import About from './pages/About';
 import Companies from './pages/Companies';
 import Company from './pages/Company';
 import Launches from './pages/Launches';
+import PastLaunches from './pages/PastLaunches';
 import Launch from './pages/Launch';
 import Rockets from './pages/Rockets';
 import Rocket from './pages/Rocket';
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="/companies" element={<Companies />} />
             <Route path="/company/:id" element={<Company />} />
             <Route path="/launches" element={<Launches />} />
+            <Route path="/past-launches" element={<PastLaunches />} />
             <Route path="/launch/:id" element={<Launch />} />
             <Route path="/rockets" element={<Rockets />} />
             <Route path="/rocket/:id" element={<Rocket />} />

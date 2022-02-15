@@ -41,6 +41,22 @@ export const getLaunches = async (page = '1') => {
         .then(data => data);
 };
 
+export const getLaunchesBefore = async (page = '1', date) => {
+    const path = `/json/launches?page=${page}&before_date=${date}`;
+
+    return await fetch(`${API_URL}${path}`)
+        .then(response => response.json())
+        .then(data => data);
+};
+
+export const getLaunchesAfter = async (page = '1', date) => {
+    const path = `/json/launches?page=${page}&after_date=${date}`;
+
+    return await fetch(`${API_URL}${path}`)
+        .then(response => response.json())
+        .then(data => data);
+};
+
 export const getNextLaunches = async () => {
     return await fetch(`${API_URL}/json/launches/next/5`)
         .then(response => response.json())

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Heading, Pagination, Anchor } from 'grommet';
-import { useSearchParams, useNavigate, Link } from 'react-router-dom';
+import { Box, Heading, Pagination } from 'grommet';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 import { PER_PAGE } from '../constants';
-import { getLaunches } from '../api';
+import { getLaunchesBefore } from '../api';
 import { getTitle  } from '../utils';
 import FullPageLoading from '../components/FullPageLoading';
 import Launch from '../components/Launch';
 
-const Launches = () => {
+const today = format(new Date(), 'yyyy-MM-dd');
+
+const PastLaunches = () => {
     const [launches, setLaunches] = useState([]);
     const [total, setTotal] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -17,14 +20,14 @@ const Launches = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        document.title = getTitle('Launches');
+        document.title = getTitle('Past Launches');
     }, []);
 
     useEffect(() => {
         const pageQuery = searchParams.get('page') || '1';
         setCurrentPage(parseInt(pageQuery, 10));
         const asyncGetLaunches = async () => {
-            const data = await getLaunches(pageQuery);
+            const data = await getLaunchesBefore(pageQuery, today);
             setLaunches(data.result);
             setTotal(data.total);
             setLoading(false);
@@ -34,20 +37,13 @@ const Launches = () => {
     }, [searchParams]);
 
     const handlePaginationChange = ({ page }) => {
-        navigate(`/launches/?page=${page}`);
+        navigate(`/past-launches/?page=${page}`);
     };
 
     return (
         <Box pad={{ horizontal: 'medium' }}>
             <Box align='center' pad={'large'}>
-                <Heading margin="none">Upcoming Launches</Heading>
-                <Box pad={{ top: 'small' }}>
-                    <Anchor
-                        as={Link}
-                        to={'/past-launches'}
-                        label={'See Past Launches'}
-                    />
-                </Box>
+                <Heading margin="none">Past Launches</Heading>
             </Box>
             <Box align='center'>
                 <Box width={'xlarge'}>
@@ -75,4 +71,4 @@ const Launches = () => {
     );
 };
 
-export default Launches;
+export default PastLaunches;
